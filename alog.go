@@ -41,9 +41,7 @@ func New(w io.Writer) *Alog {
 func (al Alog) Start() {
 	for {
 		msg := <-al.msgCh
-		go func(m string) {
-			al.write(m, nil)
-		}(msg)
+		go al.write(msg, nil)
 	}
 }
 
